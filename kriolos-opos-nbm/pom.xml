@@ -9,6 +9,8 @@
     </parent>
     <artifactId>kriolos-pos-nbm</artifactId>
     <packaging>nbm</packaging>
+    <name>Kriolos-POS-NBM</name>
+    <description>This module expose KriolOS-POS as NBM Module</description>
     <properties>
         <exec.mainClass>KriolosPosNbp</exec.mainClass>
         <kriolos.opos.version>1.0.0-SNAPSHOT</kriolos.opos.version>
@@ -139,6 +141,11 @@
                 <groupId>org.apache.netbeans.utilities</groupId>
                 <artifactId>nbm-maven-plugin</artifactId>
                 <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        
+                    </execution>
+                </executions>
                 <configuration>
                     <publicPackages>
                         <publicPackage>com.openbravo.basic</publicPackage>
@@ -167,5 +174,4 @@
             </plugin>
         </plugins>
     </build>
-    <name>Kriolos-POS-NBM</name>
 </project>

@@ -104,6 +104,7 @@
                         <compilerArgs>
                             <arg>-Xlint</arg>
                         </compilerArgs>
+                        <!--
                         <annotationProcessorPaths>
                             <path>
                                 <groupId>org.projectlombok</groupId>
@@ -116,6 +117,7 @@
                                 <version>${netbeans.version}</version>
                             </path>
                         </annotationProcessorPaths>
+                        -->
                     </configuration>
                 </plugin>
                     
