@@ -23,18 +23,6 @@
         For more information, please visit https://github.com/kriolos/kriolos-obiz.
     </description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <all.clusters>${project.build.directory}/${brandingToken}</all.clusters>
-        <jpms-flags>
-            -Djava.security.manager=allow
-            -Djdk.net.URLClassPath.disableClassPathURLCheck=true
-            --add-opens=java.base/java.net=ALL-UNNAMED
-            <!-- add more "add opens" if needed
-            -->
-        </jpms-flags>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.netbeans.cluster</groupId>
@@ -102,16 +90,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.3</version>
-                <configuration>
-                    <argLine>
-                        ${jpms-flags}
-                    </argLine>
-                    <systemPropertyVariables>
-                        <all.clusters>${all.clusters}</all.clusters>
-                        <branding.token>${brandingToken}</branding.token>
-                    </systemPropertyVariables>
-                </configuration>
             </plugin>
         </plugins>
     </build>

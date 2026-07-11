@@ -13,9 +13,21 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <netbeans.version>RELEASE240</netbeans.version>
+        <netbeans.version>RELEASE250</netbeans.version>
         <brandingToken>kriolos_obiz</brandingToken>
         <lombok.version>1.18.38</lombok.version>
+        
+        <all.clusters>${project.build.directory}/${brandingToken}</all.clusters>
+        <!-- Global JVM arguments that Surefire is forced to append to every single fork -->
+        <argLine>
+            -DTopSecurityManager.disable=true
+            -Dsurefire.enableProcessChecker=false
+            -Djdk.net.URLClassPath.disableClassPathURLCheck=true
+            --add-opens java.base/java.lang=ALL-UNNAMED
+            --add-opens java.base/java.util=ALL-UNNAMED
+            --add-opens java.base/java.net=ALL-UNNAMED
+            --add-opens java.desktop/java.awt=ALL-UNNAMED
+        </argLine>
     </properties>
     
     <modules>
@@ -84,7 +96,7 @@
                 <plugin>   
                     <groupId>org.apache.netbeans.utilities</groupId>
                     <artifactId>nbm-maven-plugin</artifactId>
-                    <version>14.3</version>
+                    <version>14.5</version>
                     <extensions>true</extensions>
                     <configuration>   
                         <brandingToken>${brandingToken}</brandingToken>
@@ -99,25 +111,13 @@
                 <plugin>  
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.14.0</version>
+                    <version>3.15.0</version>
                     <configuration>
                         <compilerArgs>
                             <arg>-Xlint</arg>
+                            <!-- Forces modern JDKs to scan the classpath for annotation processors -->
+                            <arg>-proc:full</arg>
                         </compilerArgs>
-                        <!--
-                        <annotationProcessorPaths>
-                            <path>
-                                <groupId>org.projectlombok</groupId>
-                                <artifactId>lombok</artifactId>
-                                <version>${lombok.version}</version>
-                            </path>
-                            <path>
-                                <groupId>org.netbeans.api</groupId>
-                                <artifactId>org-openide-util</artifactId>
-                                <version>${netbeans.version}</version>
-                            </path>
-                        </annotationProcessorPaths>
-                        -->
                     </configuration>
                 </plugin>
                     
@@ -129,7 +129,17 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.5.3</version>
+                    <version>3.5.6</version>
+                    <configuration>
+                        <!-- If fail uncomment to pass the build
+                        <skipTests>true</skipTests>
+                        -->
+                                  
+                        <systemPropertyVariables>
+                            <all.clusters>${all.clusters}</all.clusters>
+                            <branding.token>${brandingToken}</branding.token>
+                        </systemPropertyVariables>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -143,18 +153,36 @@
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
-            
             <dependency>
-                <groupId>org.netbeans.api</groupId>
-                <artifactId>org-netbeans-api-annotations-common</artifactId>
+                <groupId>org.netbeans.cluster</groupId>
+                <artifactId>platform</artifactId>
                 <version>${netbeans.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.netbeans.api</groupId>
-                <artifactId>org-openide-util</artifactId>
-                <version>${netbeans.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
+    
+    <profiles>
+        <!-- Profile automatically triggered for Java versions that support the Security Manager -->
+        <profile>
+            <id>legacy-security-manager</id>
+            <activation>
+                <jdk>[17,24)</jdk> <!-- Matches Java 17, 18, 19, 20, 21, 22, 23 (Strictly less than 24) -->
+            </activation>
+            <properties>
+                <!-- Appends the required security manager flag to the base argLine -->
+                <argLine>
+                    -Djava.security.manager=allow
+                    -Dsurefire.enableProcessChecker=false
+                    -Djdk.net.URLClassPath.disableClassPathURLCheck=true
+                    --add-opens java.base/java.lang=ALL-UNNAMED
+                    --add-opens java.base/java.util=ALL-UNNAMED
+                    --add-opens java.base/java.net=ALL-UNNAMED
+                    --add-opens java.desktop/java.awt=ALL-UNNAMED
+                </argLine>
+            </properties>
+        </profile>
+    </profiles>
   
 </project>

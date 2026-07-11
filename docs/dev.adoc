@@ -1,0 +1,45 @@
+
+
+
+----
+<plugin>  
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.15.0</version>
+    <configuration>
+        <compilerArgs>
+            <arg>-Xlint</arg>
+        </compilerArgs>
+
+        <annotationProcessorPaths>
+            <!--
+            <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </path>
+            <path>
+                <groupId>org.netbeans.api</groupId>
+                <artifactId>org-openide-util</artifactId>
+                <version>${netbeans.version}</version>
+            </path>
+            -->
+            <!-- Critical for NetBeans Platform API annotations processing -->
+
+            <!-- 2. NetBeans Common Annotations Processor (Crucial for @Messages  and Bundle generation) -->
+            <path>
+                <groupId>org.netbeans.api</groupId>
+                <artifactId>org-netbeans-api-annotations-common</artifactId>
+                <version>${netbeans.version}</version>
+            </path>
+
+            <!-- 3. NetBeans Utilities Processor (Crucial for layer generation/registrations) -->
+            <path>
+                <groupId>org.netbeans.api</groupId>
+                <artifactId>org-openide-util</artifactId>
+                <version>${netbeans.version}</version>
+            </path>
+        </annotationProcessorPaths>
+    </configuration>
+</plugin>
+----

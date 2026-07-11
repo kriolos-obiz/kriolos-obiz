@@ -141,11 +141,6 @@
                 <groupId>org.apache.netbeans.utilities</groupId>
                 <artifactId>nbm-maven-plugin</artifactId>
                 <extensions>true</extensions>
-                <executions>
-                    <execution>
-                        
-                    </execution>
-                </executions>
                 <configuration>
                     <publicPackages>
                         <publicPackage>com.openbravo.basic</publicPackage>

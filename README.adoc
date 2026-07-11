@@ -27,6 +27,14 @@ endif::[]
 :revdate: {last-update-label} {docdatetime}
 :version-label!:
 
+This distribution is build on top off Netbeans Platform
+
+
+----
+The NetBeans Platform is a reusable, broad Java framework designed for building large-scale, modular desktop applications. 
+Instead of writing core desktop architecture from scratch, developers use it to inherit pre-built "plumbing". 
+In fact, the popular Apache NetBeans IDE itself is built entirely on top of this platform.
+----
 
 ifdef::badges[]
 == Build status
