@@ -43,3 +43,24 @@
     </configuration>
 </plugin>
 ----
+
+
+
+
+== 
+
+
+----
+# 1. Limpe qualquer rasto da tentativa anterior na cache do Git
+git rm --cached kriolos-pos 2>/dev/null
+
+# 2. Adicione o submodule com o URL completo e correto
+git submodule add https://github.com/kriolos-obiz/kriolos-pos.git kriolos-pos
+
+# 3. Sincronize e atualize os ficheiros locais
+git submodule sync
+git submodule update --init --recursive
+
+
+./mw
+----
