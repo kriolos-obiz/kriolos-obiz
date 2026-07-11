@@ -1,3 +1,3 @@
-[submodule "unicenta-pos"]
-	path = unicenta-pos
-	url = https://github.com/poolborges/unicenta-pos.git
+[submodule "kriolos-pos"]
+	path = kriolos-pos
+	url = https://github.com/kriolos-obiz/kriolos-pos.git
