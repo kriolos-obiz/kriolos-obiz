@@ -20,27 +20,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
-import org.openide.awt.ActionReferences;
 import org.openide.awt.ActionRegistration;
 import org.openide.util.NbBundle.Messages;
 
 @ActionID(
         category = "KriolosPOS",
-        id = "io.github.kriolos.opos.gui.actions.OpenPOSAction"
+        id = "io.github.kriolos.opos.gui.actions.NewSaleAction"
 )
 @ActionRegistration(
-        iconBase = "io/github/kriolos/opos/gui/icons/app_logo.png",
-        displayName = "#CTL_OpenPOSAction"
+        iconBase = "io/github/kriolos/opos/gui/icons/app_logo.png", // Required: Toolbar buttons must have an icon path (16x16)
+        displayName = "#CTL_NewSaleAction"
 )
-@ActionReferences({
-    @ActionReference(path = "Menu/Window", position = -100),
-    @ActionReference(path = "Toolbars/KriolosPOS", position = 300)
-})
-@Messages("CTL_OpenPOSAction=Open POS")
-public final class OpenPOSAction implements ActionListener {
+@ActionReference(
+        path = "Toolbars/KriolosPOS", // Matches the folder name read by your PosToolbarConfig.xml
+        position = 100 // Lower numbers place the button further to the left
+)
+@Messages("CTL_NewSaleAction=New Sale (F2)")
+public final class NewSaleAction implements ActionListener {
 
     @Override
-    public void actionPerformed(ActionEvent ev) {
-        // TODO use context
+    public void actionPerformed(ActionEvent e) {
+        // Place your Point of Sale business logic here (e.g., open sales screen)
     }
 }

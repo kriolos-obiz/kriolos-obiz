@@ -16,6 +16,7 @@
  */
 package io.github.kriolos.opos.gui;
 
+import io.github.kriolos.opos.server.WebServer;
 import java.util.Date;
 import java.util.Timer;
 import java.util.logging.Logger;
@@ -32,6 +33,7 @@ public class Installer extends ModuleInstall implements Runnable {
     public static final Logger LOGGER = Logger.getLogger(Installer.class.getName());
     private static Timer timer;
     private static final long serialVersionUID = 1L;
+    private WebServer webserver;
 
     public Installer() {
         super();
@@ -43,10 +45,13 @@ public class Installer extends ModuleInstall implements Runnable {
         timer.scheduleAtFixedRate(timetask, new Date(), 60_000l * 30); // (60s x 30) 30min timeout
         
         System.out.println("Kriolos.POS Schedule has loaded.");
+        
+        webserver = new WebServer();
     }
 
     @Override
     public void run() {
+        webserver.sa();
         System.out.println("Kriolos.POS Schedule is running.");
     }
 
@@ -55,6 +60,9 @@ public class Installer extends ModuleInstall implements Runnable {
         if(timer != null){
             timer.cancel();
         }
+        
+        webserver.so();
+        
         System.out.println("Kriolos.POS Schedule is closed.");
     }
 }

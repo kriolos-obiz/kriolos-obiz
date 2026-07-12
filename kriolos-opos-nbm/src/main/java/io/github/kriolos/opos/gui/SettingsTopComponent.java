@@ -46,7 +46,7 @@ import org.openide.util.NbBundle.Messages;
 )
 
 @ActionID(
-        category = "Window",
+        category = "KriolosPOS",
         id = "io.github.kriolos.opos.gui.SettingsTopComponent"
 )
 @ActionReferences({

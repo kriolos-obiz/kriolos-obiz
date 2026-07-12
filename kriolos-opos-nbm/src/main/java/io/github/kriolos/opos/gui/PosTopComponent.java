@@ -41,7 +41,7 @@ import org.openide.util.RequestProcessor;
         persistenceType = TopComponent.PERSISTENCE_ALWAYS
 )
 @TopComponent.Registration(mode = "editor", openAtStartup = true)
-@ActionID(category = "Window", id = "io.github.kriolos.opos.gui.PosTopComponent")
+@ActionID(category = "KriolosPOS", id = "io.github.kriolos.opos.gui.PosTopComponent")
 @ActionReference(path = "Menu/Window" /*, position = 333 */)
 @TopComponent.OpenActionRegistration(
         displayName = "#CTL_PosAction",
