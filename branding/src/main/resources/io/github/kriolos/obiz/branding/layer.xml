@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
 <filesystem> 
-    <folder name="Toolbar">
-        <!-- Will be enable as Firs Toolbar configura -->
-        <file name="PosToolbarConfig.xml" url="io/github/kriolos/obiz/branding/PosToolbarConfig.xml" />
+    <folder name="Toolbars">
+        <!-- Define as First Toolbar -->
+        <!-- Changed prefix from nbresloc:/ to nbres:/ and provided the absolute path from the root resources folder -->
+        <file name="PosToolbarConfig.xml" url="nbres:/io/github/kriolos/obiz/branding/PosToolbarConfig.xml">
+            <attr name="position" intvalue="10"/>
+        </file>
+        
+        <folder name="KriolosPOS">
+            <attr name="position" intvalue="500"/>
+        </folder>
         <!-- Standard.xml is hidden, so NO NEED call 
         ToolbarPool.getDefault().setConfiguration("PosToolbarConfig.xml");
         -->

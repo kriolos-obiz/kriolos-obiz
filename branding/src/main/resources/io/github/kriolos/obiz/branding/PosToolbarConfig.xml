@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE Configuration PUBLIC "-//NetBeans IDE//DTD toolbar//EN" "http://www.netbeans.org/dtds/toolbar.dtd">
 
-<!-- Standard Toolbar --> 
+<!-- PosToolbarConfig --> 
 <Configuration>
   <Row>
     <Toolbar name="File" visible="false"/>
