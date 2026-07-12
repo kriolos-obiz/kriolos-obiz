@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.github.kriolos.obiz</groupId>
@@ -85,6 +85,25 @@
             <plugin>
                 <groupId>org.apache.netbeans.utilities</groupId>
                 <artifactId>nbm-maven-plugin</artifactId>
+                <configuration>
+                    <!-- Tells the plugin where your template configuration file is located -->
+                    <etcConfFile>src/main/resources/etc/kriolos_obiz.conf</etcConfFile>
+        
+                    <!-- This section is only applied when building or packaging the final application distribution -->
+                    <nbmArguments>
+                        <argument>-J-DTopSecurityManager.disable=true</argument>
+                        <argument>-J-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argument>
+                        <argument>-J--add-opens=java.base/sun.net.www.protocol.jar=ALL-UNNAMED</argument>
+                        <argument>-J--add-opens=java.base/java.lang=ALL-UNNAMED</argument>
+                        <argument>-J--add-opens=java.base/java.util=ALL-UNNAMED</argument>
+                        <argument>-J--add-opens=java.base/java.net=ALL-UNNAMED</argument>
+                        <argument>-J--add-opens=java.desktop/java.awt=ALL-UNNAMED</argument>
+                    </nbmArguments>
+                    
+                    <!-- This line forces the runtime execution (run-platform) to open the required Java modules -->
+                    <additionalArguments>-J-DTopSecurityManager.disable=true -J--add-opens=java.base/java.net=ALL-UNNAMED -J--add-opens=java.base/sun.net.www.protocol.jar=ALL-UNNAMED --laf javax.swing.plaf.metal.MetalLookAndFeel</additionalArguments>
+
+                </configuration>
             </plugin>
             <!-- Permits NbModuleSuite to be run in integration-test phase: -->
             <plugin>
@@ -107,8 +126,7 @@
                                 <id>extra</id>
                                 <goals>
                                     <goal>autoupdate</goal>
-                                    <goal>webstart-app</goal>
-                                    <goal>build-installers</goal>
+                                    <goal>standalone-zip</goal>
                                 </goals>
                             </execution>
                         </executions>
