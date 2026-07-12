@@ -1,4 +1,14 @@
 
+== Netbeans Platform 
+
+
+kriolos_obiz.conf
+----
+default_options="-J-DTopSecurityManager.disable=true -J-Djdk.net.URLClassPath.disableClassPathURLCheck=true -J--add-opens=java.base/java.net=ALL-UNNAMED -J--add-opens=java.base/sun.net.www.protocol.jar=ALL-UNNAMED"
+
+----
+
+== Maven compiler
 
 
 ----
