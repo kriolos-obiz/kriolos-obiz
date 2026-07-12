@@ -1,7 +1,7 @@
 ########## IGNORE
 
 # git submodules
-unicenta-pos/
+kriolos-pos/
 
 # MAVEN
 target/
